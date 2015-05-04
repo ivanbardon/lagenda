@@ -2,4 +2,5 @@ index.php
 Slim/
 fonts/
 js/vendors
+css/vendors
 .DS_Store
