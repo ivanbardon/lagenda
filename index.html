@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>L'Agenda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="description" content="L'Agenda dels falduts" />
+    <meta name="author" content="Ivan Bardon" />
+    
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/estilos.css" />
+
+    <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+    
+    <!-- Area de Templates -->
+    <script type="text/template" id="dia_template">
+        <li data-id=<%=id%>>
+            <p id="titul" class="dia"><%=titul%></p>
+        </li>
+    </script>
+    <script type="text/template" id="condicio_template">
+        <article>
+            <div><%=temp%></div>
+            <div>°c</div>
+            <p><%=text%></p>
+        </article>
+    </script>
+    <script type="text/template" id="previsio_template">
+        <article>
+            <div><%=day%></div>
+            <div class="icon-forecast"><%=code%></div>
+            <div><%=high%></div>
+            <div><%=low%></div>
+        </article>
+    </script>
+    <script type="text/template" id="noticia_template">
+        <div class="noticia_template">
+            <h4><%=content%></h4>
+            <p><%=encoded.content%></p>
+        </div>
+    </script>
+    <script type="text/template" id="acte_template">
+        <div id='panel' data-id=<%=id%>>
+            <p>titulo: <%=titul%></p>
+            <br>
+            <p>texto: <%=text%></p>
+            <br>
+            <p>lloc: <%=local%></p>
+        </div>
+    </script>
+    <script type="text/template" id="servei_template">
+        <div id="servei">
+            <div>nom: <%=nombre%></div>
+            <div>horari: <%=horari%></div>
+            <div>tlf: <%=tlf%></div>
+        </div>    
+    </script>
+    <!-- Fin del area de Templates -->
+    <!-- Vendors -->
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/underscore.js"></script>
+    <script type="text/javascript" src="js/backbone.js"></script>
+</head>
+<body>
+    <header>
+        <section id="section_cal">
+                <div class="temps_portada">
+                    <div id="icono_actual_weather"></div>
+                    <div id="temp_actual"></div>
+                </div>
+                <div class="div_cal">
+                    <div id="div_dia"></div>
+                    <div id="div_num"></div>
+                    <div id="div_mes"></div>
+                    <div id="event_actual">· eventActual ·</div>
+                </div>
+        </section>
+        <section id="section_meteo">
+            <div id="meteo_actual">
+                <div id="meteo_location">Ulldecona</div>
+                <div id="meteo_icon"></div>                
+            </div>
+            <div id="div_forecast">
+                
+            </div>
+        </section>
+        <section id="section_info">
+            <article>
+                <p>Farmàcia de guàrdia:</p>
+                <div id="guardia_nombre"></div>
+                <div id="b5"></div>
+            </article>
+        </section>
+    </header>
+    <div id="retorn"> &laquo  Enrere</div>
+    <nav id="botonera">
+        <input type="button" id="b1" value="Agenda">
+        <input type="button" id="b2" value="Serveis">
+        <a href="http://ulldecona.cat/wp-content/uploads/2014/HORARIS.pdf"><input type="button" id="b6" value="Transports"></a>
+        <input type="button" id="b3" value="Noticies">
+        <input type="button" id="b4" value="Fotos">
+    </nav>
+    <section id="contenedor_principal">
+        <div id="listado2">
+        </div>
+        <div id="listado">
+        </div>
+        <div id="contenedor">
+        </div>
+        <div id="instafeed"></div>
+    </section>
+    <footer>
+        <p><a href="ivanbardon.github.io/portfolio">Ivan Bardon</a> ·L'Agenda 2013-2015</p>
+    </footer>
+    
+    <!-- Carga de archivos y clases -->
+    <script type="text/javascript" src="js/models/Previsio.js"></script>
+    <script type="text/javascript" src="js/models/Noticia.js"></script>
+    <script type="text/javascript" src="js/models/Acte.js"></script>
+    <script type="text/javascript" src="js/models/Servei.js"></script>
+    <script type="text/javascript" src="js/models/Condicio.js"></script>
+    <script type="text/javascript" src="js/views/ActeView.js"></script>
+    <script type="text/javascript" src="js/views/TempsView.js"></script>
+    <script type="text/javascript" src="js/views/CondicioView.js"></script>
+    <script type="text/javascript" src="js/views/NoticiaView.js"></script>
+    <script type="text/javascript" src="js/views/ServeiView.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/router/Enrutador.js"></script>
+    <script type="text/javascript" src="js/instafeed.js"></script>
+ <!-- carrega de les imatges de instagram -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
