@@ -16,8 +16,10 @@ var contenedor = $('#contenedor');
 var instafeed = $('#instafeed');
 var sectionInfo = $('#section_info');
 var sectionCal = $('#section_cal');
-var botoneraInput = $('#botonera input');
+var botoneraInput = $('#botonera');
 var retorn = $('#retorn');
+var tempsPortada = $('.temps_portada');
+var iconoInfo = $('.icon-info');
 
 $(document).ready(function(){
 
@@ -26,27 +28,25 @@ $(document).ready(function(){
     Backbone.history.start();
     calendar();
 
-
-
-
     // Transiciones del Header
-    sectionCal.click(function(){
+    tempsPortada.click(function(){
         sectionCal.fadeOut(function(){
             botonera.hide()
             sectionMeteo.fadeIn();
-            listado.html('');
-            listado2.html('');
-            contenedor.html('');
+            limpiarContenedores()
             instafeed.hide();
             sectionInfo.hide()
         })
     });
     // Transiciones del Header
+    iconoInfo.click(function(){
+        alert('Aqui explicare com funciona la app')
+    })
+    // Transiciones del Header
     sectionMeteo.click(function(){
         sectionMeteo.fadeOut(function(){
             botonera.show()
             sectionCal.fadeIn();
-            sectionInfo.show()
         })
     });
 
@@ -92,10 +92,14 @@ $(document).ready(function(){
         retorn.show()
     });
 
-   // Capacidad de llamar por telefono desde el panel de farmacia de guardia
-    sectionInfo.click(function(){
+    // Capacidad de llamar por telefono desde el panel de farmacia de guardia
+    $('#b5').click(function(){
         window.location.href='tel:' + $('#b5').html();
     });
+
+    $('#section_info .right').click(function(){
+        sectionInfo.hide()
+    })
 
     // Boton de retorno al menu y limpieza de contenedores
     retorn.click(function(){
@@ -110,6 +114,7 @@ $(document).ready(function(){
 
         url:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.ulldecona.cat%2Ffeed%2F%22&format=json&diagnostics=true&callback=getRSSUllde"
     });
+    
     // Peticion ajax a yahoo para mostrar el tiempo
     $.ajax({
         url:"//query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=776252 and u='c'&format=json&callback=getWeather"

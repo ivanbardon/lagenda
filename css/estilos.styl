@@ -34,6 +34,7 @@ body
 header
     width 100%
     overflow-x hidden
+    margin-bottom 30px
     section
         width 100%
         height auto
@@ -41,8 +42,12 @@ header
         
     #section_cal
         height 420px
-        width 100%
-        
+        width 300px
+        border-bottom 1px solid black
+        position relative
+        left 50%
+        margin-left -150px
+                
         .temps_portada
             width 50px
             height 50px
@@ -62,7 +67,7 @@ header
             height 300px
             position relative
             left 50%
-            top 30%
+            top 35%
             margin-top -150px
             margin-left -100px
             text-align center
@@ -70,7 +75,12 @@ header
             
             #div_num
                 font-size 90px
-            
+                position relative
+                width 200px
+                left 50%
+                margin-left -100px
+                
+
             #event_actual
                 font-size 30px
                 margin-top 20px
@@ -112,6 +122,13 @@ header
     margin 0 auto
     padding 0px
     
+    .right
+        float right
+        padding 5px
+        opacity .8
+        
+        span
+    
     article
         border 1px dotted black
         border-radius 5px
@@ -119,10 +136,8 @@ header
         
         div
             display inline-block
-            
-        input
-            
-#contenedor
+
+#contenedor_principal
     width 100%
     height auto
     position relative
@@ -140,15 +155,29 @@ footer
     height auto
     text-align center
 
-    
-    input
-        background-color white
-        border 1px dotted black
-        border-radius 50%
-        display inline-block
-        margin 15px
-        height 100px
-        width 100px
+    ul
+        padding 0px
+        margin 0px
+        li
+            cursor pointer
+            list-style-type none
+            background-color transparent
+            border 1px dotted  black
+            border-radius 50%
+            display inline-block
+            margin 15px
+            height 110px
+            width 110px
+            text-align center
+            
+            figure
+                font-size 40px
+                margin 0 auto
+                padding-top 25px
+                    
+            span
+                
+                
     
 #listado ul
     padding 0px
@@ -174,6 +203,40 @@ footer
     
 #retorn
     display none
+    
+    p
+        display inline
+        margin-left 45px
+        top -15px
+        position relative
+        
+    article
+        margin 0 auto
+        padding 0
+        height 13px
+        margin-left 10px 
+        div
+            width 6px
+            height 6px
+            border 1px solid black
+            border-radius 50%
+            display inline-block
+            margin 0px auto
+            padding 0px
+
+#listado2
+    ul
+        margin 0 auto
+        padding 0
+        
+#b5
+    margin-left 15px
+.servei
+    width 90%
+    height auto
+    border 1px solid black
+    border-radius 5px
+    margin 15px
 
 .panel_seleccionado
     background-color #2ecc71
@@ -256,57 +319,83 @@ footer
     &:before
         font-family icomoon
         content "\e601"
-
-
-.icon-mobile
+        
+.icon-camera
     &:before
         font-family icomoon
-        content "\e958"
+        content "\e90f"
 
-
-.icon-user
+.icon-pacman:before
     &:before
         font-family icomoon
-        content "\e971"
+        content "\e916"
 
-
-.icon-key
+.icon-bullhorn
     &:before
         font-family icomoon
-        content "\e98d"
-
-
-.icon-man-woman
+        content "\e91a"
+    
+.icon-news
     &:before
         font-family icomoon
-        content "\e9de"
+        content "\e60c"
 
-
-.icon-smile
+.icon-photo
     &:before
         font-family icomoon
-        content "\e9e1"
+        content "\e60d"
 
-
-.icon-sad
+.icon-note
     &:before
         font-family icomoon
-        content "\e9e5"
+        content "\e60e"
 
-
-.icon-wink
+.icon-megaphone
     &:before
         font-family icomoon
-        content "\e9e7"
+        content "\e60f"
 
-
-.icon-facebook3
+.icon-calendar
     &:before
         font-family icomoon
-        content "\ea8e"
+        content "\e610"
 
-
-.icon-twitter3
+.icon-truck
     &:before
-        font-faceamily icomoon
-        content "\ea93"
+        font-family icomoon
+        content "\e611"
+
+.icon-info
+    &:before
+        font-family icomoon
+        content "\ea0c"
+        float left
+
+.icon-cancel-circle
+    &:before
+        font-family icomoon
+        content "\ea0d"
+
+.icon-checkbox-checked
+    &:before
+        font-family icomoon
+        content "\ea52"
+        
+.icon-lab
+    &:before
+        font-family icomoon
+        content: "\e612"
+
+.icon-fire
+    &:before
+        font-family icomoon
+        content "\e613"
+        
+.icon-phone2
+    &:after
+        font-family icomoon
+        content "\e942"
+        color #2980b9
+        margin-left 5px
+        
+
