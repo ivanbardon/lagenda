@@ -6,18 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="description" content="L'Agenda dels falduts" />
     <meta name="author" content="Ivan Bardon" />
-    
-    <link rel="stylesheet" type="text/css" href="css/vendors/normalize.css" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="traslucent">
+    <meta name="apple-mobile-web-app-title" content="l'Agenda">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"  />
+    <link rel="apple-touch-icon" sizes="120x120" href="images/logo.png">
+    <link rel="stylesheet" type="text/css" href="vendors/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/estilos.css" />
-
-    <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-    
+    <link rel="stylesheet" type="text/css" href="vendors/jquery-ui.min.css" />
+ 
     <!-- Area de Templates -->
     <script type="text/template" id="dia_template">
-        <li data-id=<%=id%>>
-            <p id="titul" class="dia"><%=titul%></p>
+        <li data-id=<%=id%> class="event">
+            <div class="headerE">
+                <p class="diaE"><%=dia%></p>
+                <p class="titulE"><%=titul%></p>
+                <p class="localE"><%=local%></p>
+            </div>
+            <article class="contentE">
+                <p class="textE"><%=text%></p>
+            </article>
         </li>
+    </script>
+    <script type="text/template" id="calendar_template">
+        
     </script>
     <script type="text/template" id="condicio_template">
         <article>
@@ -28,25 +41,18 @@
     </script>
     <script type="text/template" id="previsio_template">
         <article>
-            <div><%=day%></div>
-            <div class="icon-forecast"><%=code%></div>
-            <div><%=high%></div>
-            <div><%=low%></div>
+            <p> <%=day%> </p>
+            <figure class= <%=clase%> > </figure>
+            <div class="maxmin">
+                <div class="icon-arrow-up2"> <%=high%> </div>
+                <div class="icon-arrow-down2"> <%=low%> </div>
+            </div>
         </article>
     </script>
     <script type="text/template" id="noticia_template">
         <div class="noticia_template">
-            <h4><%=content%></h4>
-            <p><%=encoded.content%></p>
-        </div>
-    </script>
-    <script type="text/template" id="acte_template">
-        <div id='panel' data-id=<%=id%>>
-            <p>titulo: <%=titul%></p>
-            <br>
-            <p>texto: <%=text%></p>
-            <br>
-            <p>lloc: <%=local%></p>
+            <h4><%=titul%></h4>
+            <p><%=text1%></p>
         </div>
     </script>
     <script type="text/template" id="servei_template">
@@ -57,13 +63,22 @@
         </div>    
     </script>
     <!-- Fin del area de Templates -->
-    <!-- Vendors -->
-    <script type="text/javascript" src="js/vendors/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/vendors/underscore.js"></script>
-    <script type="text/javascript" src="js/vendors/backbone.js"></script>
 </head>
 <body>
     <header>
+        <section id="section_menu2">
+            <div id="div_calendar">
+                <ul>
+                    <li>lihsmg</li>
+                    <li>dsfadf</li>
+                    <li> sdfd fds</li>
+                    <li>gadgasd</li>
+                    <li>gfash</li>
+                    <li>fgfgrg</li>
+                    <li>rgegwerg</li>
+                </ul>
+            </div>
+        </section>
         <section id="section_cal">
             <div class="icon-info"></div>
                 <div class="temps_portada">
@@ -88,7 +103,6 @@
         </section>
         <section id="section_info">
             <article>
-                <div class="right"><span class="icon-cancel-circle"></span></div>
                 <p>Farmàcia de guàrdia:</p>
                 <div id="guardia_nombre"></div>
                 <div id="b5" class="icon-phone2"></div>
@@ -110,11 +124,12 @@
         <ul>
             <li id="b1"><figure class="icon-calendar"></figure><span>Agenda</span></li>
             <li id="b2"><figure class="icon-cor"></figure><span>Serveis</span></li>
-            <li id="b6"><figure class="icon-truck"></figure><span><a href="http://ulldecona.cat/wp-content/uploads/2014/HORARIS.pdf">Transports</a></span></li>
-            <li id="b3"><figure class="icon-megaphone"></figure><span>Noticies</span></li>
+            <a href="http://ulldecona.cat/wp-content/uploads/2014/HORARIS.pdf"><li id="b6"><figure class="icon-truck"></figure><span>Transports</span></li></a>
+            <li id="b3"><figure class="icon-news"></figure><span>Noticies</span></li>
             <li id="b4"><figure class="icon-camera"></figure><span>Fotos</span></li>
-            <li id="b6"><figure class="icon-lab"></figure><span>Futbol</span></li>
+            <li id="b6"><figure class="icon-lab"></figure><span>Futbol</span></li><li id="b7"><figure class="icon-fire"></figure><span>Comentaris</span></li>
         </ul>
+        
     </nav>
     <section id="contenedor_principal">
         <div id="listado2">
@@ -128,6 +143,12 @@
     <footer>
         <p>© L'Agenda 2013-2015</p>
     </footer>
+
+    <!-- Vendors -->
+    <script type="text/javascript" src="vendors/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="vendors/underscore.js"></script>
+    <script type="text/javascript" src="vendors/backbone.js"></script>
+    <script type="text/javascript" src="vendors/jquery-ui.min.js"></script>
     
     <!-- Carga de archivos y clases -->
     <script type="text/javascript" src="js/models/Previsio.js"></script>
@@ -136,13 +157,23 @@
     <script type="text/javascript" src="js/models/Servei.js"></script>
     <script type="text/javascript" src="js/models/Condicio.js"></script>
     <script type="text/javascript" src="js/views/ActeView.js"></script>
-    <script type="text/javascript" src="js/views/TempsView.js"></script>
+    <script type="text/javascript" src="js/views/PrevisioView.js"></script>
     <script type="text/javascript" src="js/views/CondicioView.js"></script>
     <script type="text/javascript" src="js/views/NoticiaView.js"></script>
     <script type="text/javascript" src="js/views/ServeiView.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/router/Enrutador.js"></script>
-    <script type="text/javascript" src="js/vendors/instafeed.js"></script>
+    <script type="text/javascript" src="vendors/instafeed.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-56018645-5', 'auto');
+        ga('send', 'pageview');
+
+    </script>
  <!-- carrega de les imatges de instagram -->
 
 </body>

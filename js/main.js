@@ -6,6 +6,8 @@ var previsio;
 var noticies;
 var condicio;
 var guard;
+var fecha;
+var fotos = {};
 
 // caché de los elementos jQuery
 var botonera = $('#botonera');
@@ -16,7 +18,6 @@ var contenedor = $('#contenedor');
 var instafeed = $('#instafeed');
 var sectionInfo = $('#section_info');
 var sectionCal = $('#section_cal');
-var botoneraInput = $('#botonera');
 var retorn = $('#retorn');
 var tempsPortada = $('.temps_portada');
 var iconoInfo = $('.icon-info');
@@ -30,66 +31,63 @@ $(document).ready(function(){
 
     // Transiciones del Header
     tempsPortada.click(function(){
-        sectionCal.fadeOut(function(){
-            botonera.hide()
-            sectionMeteo.fadeIn();
-            limpiarContenedores()
-            instafeed.hide();
-            sectionInfo.hide()
+        sectionCal.toggle('fade', 'fast', function(){
+            sectionMeteo.toggle('drop',{direction:'right'}, 'fast');
+            limpiarContenedores();
         })
     });
+
     // Transiciones del Header
     iconoInfo.click(function(){
-        alert('Aqui explicare com funciona la app')
-    })
+        // $('#section_menu2').toggle('drop', 'fast');
+    });
+
     // Transiciones del Header
     sectionMeteo.click(function(){
-        sectionMeteo.fadeOut(function(){
-            botonera.show()
-            sectionCal.fadeIn();
+        sectionMeteo.toggle('fade', 'fast', function(){
+            sectionCal.toggle('drop', 'fast', function(){
+                botonera.show()
+            });
         })
     });
 
     // Vaciar el html de los contenedores y Crear la vista de los actos
     $('#b1').click(function(){
-        limpiarContenedores()
+        limpiarContenedores();
+        retorn.toggle('drop', {direction: 'up'});
         listado.html('<ul></ul>');
-        instafeed.hide()
         var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actes});
         window.scrollTo(0, 430);
-        botoneraInput.hide();
-        retorn.show()
     });
 
     // Vaciar el html de los contenedores y Crear la vista de los servicios
     $('#b2').click(function(){
-        limpiarContenedores()
+        limpiarContenedores();
+        retorn.toggle('drop', {direction: 'up'});
         listado2.html('<ul></ul>');
-        instafeed.hide()
+        sectionInfo.show();
+        sectionInfo.appendTo('#listado2');
         var serveiView = new ServeiView({el:$('#listado2 ul'), collection: serveis});
         window.scrollTo(0, 430);
-        botoneraInput.hide();
-        retorn.show()
     });
 
     // Vaciar el html de los contenedores y Crear la vista de Noticias
     $('#b3').click(function(){
-        limpiarContenedores()
-        instafeed.hide()
+        limpiarContenedores();
+        retorn.toggle('drop', {direction: 'up'});
         var botoNoticiaView = new NoticiaView({el:contenedor, collection: noticies});
         window.scrollTo(0, 430);
-        botoneraInput.hide();
-        retorn.show()
         
     });
 
     // Vaciar el html de los contenedores y Crear la vista de las fotos
     $('#b4').click(function(){
         limpiarContenedores();
+        retorn.toggle('drop', {direction: 'up'});
+        if(!fotos.length)feed.run();
+        else console.log('vale');
         instafeed.show();
         window.scrollTo(0, 430);
-        botoneraInput.hide();
-        retorn.show()
     });
 
     // Capacidad de llamar por telefono desde el panel de farmacia de guardia
@@ -97,48 +95,57 @@ $(document).ready(function(){
         window.location.href='tel:' + $('#b5').html();
     });
 
-    $('#section_info .right').click(function(){
-        sectionInfo.hide()
-    })
+    $('#b7').click(function(){
+        window.location.href='social.html';
+    });
 
     // Boton de retorno al menu y limpieza de contenedores
     retorn.click(function(){
-        botoneraInput.show();
-        retorn.hide();
         limpiarContenedores();
-        instafeed.hide()
-    })
-
-    // Peticion ajax para mostrar la noticias del blog ulldecona.cat
-    $.ajax({
-
-        url:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.ulldecona.cat%2Ffeed%2F%22&format=json&diagnostics=true&callback=getRSSUllde"
+        botonera.show();
+        
     });
+
+    //Peticion ajax para mostrar la noticias del blog ulldecona.cat
+    // $.ajax({
+
+    //     url:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.ulldecona.cat%2Ffeed%2F%22&format=json&diagnostics=true&callback=getRSSUllde"
+    // });
     
-    // Peticion ajax a yahoo para mostrar el tiempo
-    $.ajax({
-        url:"//query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=776252 and u='c'&format=json&callback=getWeather"
-    });
-    // Creo una instacia de instafeed para traer fotos de instagram
-    var feed = new Instafeed({
-        get : 'tagged',
-        tagName : 'ulldecona',
-        clientId : '8a96efaaef1b4e1796d0a2bc1a37f0c6',
-        sortBy : 'most-liked',
-        resolution : 'low_resolution',
-        template: '<img src="{{image}}" />{{model.user.username}}<div class="icon-cor">{{likes}}</div><br>',
-        after : function (){
-            // foto es una funcion que devuelve un entero random entre un min y un max para elegir una foto al azar
-            var foto = function getRandomInt(min, max) {
-                return Math.floor(Math.random() * (max - min)) + min;
-            }
-            // La variable fotos almacena un array de las fotos que nos llegan y le asigna a section_meteo una foto al azar
-            fotos = $('#instafeed img').clone();
-            sectionMeteo.prepend(fotos[foto(0,fotos.length+1)])
-        }
-    });
-    feed.run();
+    // // Peticion ajax a yahoo para mostrar el tiempo
+    // $.ajax({
+    //     url:"//query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=776252 and u='c'&format=json&callback=getWeather"
+    // });
+    // // Creo una instacia de instafeed para traer fotos de instagram
+    // var feed = new Instafeed({
+    //     get : 'tagged',
+    //     tagName : 'ulldecona',
+    //     clientId : '8a96efaaef1b4e1796d0a2bc1a37f0c6',
+    //     sortBy : 'most-liked',
+    //     resolution : 'low_resolution',
+    //     template: '<img src="{{image}}" />{{model.user.username}}<div class="icon-cor">{{likes}}</div><br>',
+    //     after : function (){
+    //         // Foto es una funcion que devuelve un entero random entre un min y un max para elegir una foto al azar
+    //         var foto = function getRandomInt(min, max) {
+    //             return Math.floor(Math.random() * (max - min)) + min;
+    //         }
+    //         // La variable fotos almacena un array de las fotos que nos llegan y le asigna a section_meteo una foto al azar
+    //         fotos = $('#instafeed img').clone();
+    //         sectionMeteo.prepend(fotos[foto(0,fotos.length+1)])
+    //     }
+    // });
 });
+
+function limpiarContenedores(){
+    listado.html('');
+    listado2.html('');
+    contenedor.html('');
+    instafeed.hide();
+    botonera.hide();
+    sectionInfo.hide();
+    retorn.hide();
+
+};
 
 // Funcion para manejar los datos en JSON que llegan desde yahoo weather
 var getWeather = function(data) {
@@ -155,7 +162,7 @@ var getWeather = function(data) {
         model: Previsio
     });
     previsio = new previsioCollection(forecast);
-    var tempsView = new TempsView({el:$('#div_forecast'), collection:previsio});
+    var previsioView = new PrevisioView({el:$('#div_forecast'), collection:previsio});
 
     // Coleccion y vista para la condicion meteo
     var condicioCollection = Backbone.Collection.extend({
@@ -164,7 +171,7 @@ var getWeather = function(data) {
     condicio = new condicioCollection(condition);
     var condicioView = new CondicioView({el:$('#meteo_actual'), collection:condicio});
 };
-// Funcion para manejar los datos que obtengo del ayumtamiento
+// Funcion para manejar los datos que obtengo del ayuntamiento
 var getRSSUllde = function(data){
     var items = data.query.results.body.rss.channel.item;
 
@@ -182,7 +189,7 @@ var getRSSUllde = function(data){
 function actualizaActes(){
     actes.fetch({
         success: function(){
-            console.log('Base de dades per a els actes actualitzada')
+            console.log('Base de dades per a els actes actualitzada');
         }
     });
 };
@@ -194,13 +201,14 @@ function actualizaServeis(){
             $('#guardia_nombre').html(serveis.models[guard].get('nombre'));
             $('#b5').html(serveis.models[guard].get('tlf'));
 
+
         }
     });
 };
 // Comparador del programa + impresion de la fecha
 function calendar(){
     // Variables para capturar la fecha del navegador
-    var fecha = new Date();
+    fecha = new Date();
     var numero = fecha.getDate();
     var dia = fecha.getDay();
     var mes = fecha.getMonth();
@@ -215,29 +223,28 @@ function calendar(){
     $('#div_mes').html(meses[mes]);
 
     // Condicions per a asignar la farmacia de guardia
-    if (numero==6||numero==7||numero==8||numero==9||numero==10||numero==11||numero==12||numero==27||numero==28||numero==29||numero==30){
+    // Viladot = 0
+    // Puig = 1
+    // Soler = 2
 
-        // Viladot = 0
-        guard = 0
+    if (numero==1||numero==4||numero==5||numero==6||numero==7||numero==8||numero==9||numero==10||numero==26||numero==27||numero==28||numero==29||numero==30||numero==31){
 
-    }else if (numero==13||numero==14||numero==15||numero==16||numero==17||numero==18||numero==19) {
-
-        // Puig = 1
         guard = 1
+
+    }else if (numero==2||numero==3||numero==16||numero==17||numero==18||numero==19||numero==20||numero==21||numero==22||numero==23||numero==24) {
+
+        
+        guard = 0
 
     }else{
 
-        // Soler = 2
+        
         guard = 2
     }
 
 };
 
-function limpiarContenedores(){
-    listado.html('');
-    listado2.html('');
-    contenedor.html('');
-}
+
 
 
 
