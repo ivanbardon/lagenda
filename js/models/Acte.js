@@ -17,9 +17,9 @@ var Acte = Backbone.Model.extend({
     	}else{
     		var fixDia = fixDate[2]
     	};
-    	var aux = fixDia+'/'+fixMes+'/'+fixDate[0];
+    	var fixFecha = fixDia+'/'+fixMes+'/'+fixDate[0];
     	
-    	this.set('dia', aux);
+    	this.set('dia', fixFecha);
     	this.set('hora', fixHora);
     }
 });
