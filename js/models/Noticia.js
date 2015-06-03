@@ -9,6 +9,7 @@ var Noticia = Backbone.Model.extend({
 
 		this.set('titul', tituls);
 		this.set('text1', text1);
+		// console.log(model)
 
 	}
 });
