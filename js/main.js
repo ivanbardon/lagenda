@@ -31,25 +31,25 @@ $(document).ready(function(){
     var fixMonth = Number (fecha.getMonth())+1
     hoy = fecha.getDate()+'/'+fixMonth+'/'+fecha.getFullYear();
 
-    $('#datepicker').datepicker({
-        showAnim: "drop",
-        duration: "fast",
-        showOptions: {
-            direction: "left",
-        },
+    // $('#datepicker').datepicker({
+    //     showAnim: "drop",
+    //     duration: "fast",
+    //     showOptions: {
+    //         direction: "left",
+    //     },
 
 
-        onSelect: function (selec){
-            var actesSelec = actes.findByDia(selec);
-            limpiarContenedores();
-            retorn.toggle('drop', {direction: 'up'});
-            listado.html('<ul><li>'+selec+'</ul>');
-            $('#datepicker').show();
+    //     onSelect: function (selec){
+    //         var actesSelec = actes.findByDia(selec);
+    //         limpiarContenedores();
+    //         retorn.toggle('drop', {direction: 'up'});
+    //         listado.html('<ul><li>'+selec+'</ul>');
+    //         $('#datepicker').show();
 
-            var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesSelec});
-            window.scrollTo(0, 890);
-        }
-    }).hide();    
+    //         var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesSelec});
+    //         window.scrollTo(0, 890);
+    //     }
+    // }).hide();    
 
     // Transiciones del Header
     tempsPortada.click(function(){
@@ -76,7 +76,7 @@ $(document).ready(function(){
         var actesHoy = actes.findByDia(hoy);
 
         listado.html('<ul><p>Avui al poble:</p></ul>');
-        $('#datepicker').show();
+        // $('#datepicker').show();
         var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesHoy});
         window.scrollTo(0, 500);
     });
@@ -105,8 +105,8 @@ $(document).ready(function(){
     $('#b4').click(function(){
         limpiarContenedores();
         retorn.toggle('drop', {direction: 'up'});
-        if(!fotos.length)feed.run();
-        else console.log('vale');
+        // if(!fotos.length)feed.run();
+        // else console.log('vale');
         instafeed.show();
         window.scrollTo(0, 500);
     });
