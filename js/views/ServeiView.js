@@ -1,5 +1,4 @@
-var ServeiView = Backbone.View.extend(
-{
+var ServeiView = Backbone.View.extend({
 	template: _.template($('#servei_template').html()),
 
 	initialize: function(){

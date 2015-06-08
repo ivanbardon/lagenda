@@ -46,4 +46,4 @@ function onInit(){
     actualizaActes();
     actualizaServeis();
 
-}
+};

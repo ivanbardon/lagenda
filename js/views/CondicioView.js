@@ -1,5 +1,4 @@
-var CondicioView = Backbone.View.extend(
-{
+var CondicioView = Backbone.View.extend({
 	template: _.template($('#condicio_template').html()),
 
 	initialize: function(){

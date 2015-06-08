@@ -1,5 +1,4 @@
-var PrevisioView = Backbone.View.extend(
-{
+var PrevisioView = Backbone.View.extend({
 	template: _.template($('#previsio_template').html()),
 
 	initialize: function(){

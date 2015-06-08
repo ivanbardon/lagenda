@@ -30,6 +30,11 @@
             </article>
         </li>
     </script>
+    <script type="text/template" id="dia_cal_template">
+        <div class="">
+            <%=diaNum%>
+        </div>
+    </script>
     <script type="text/template" id="condicio_template">
         <article>
             <div><%=temp%></div>
@@ -104,9 +109,9 @@
         </article>
         <p>Menu</p>
     </div>
-<!--     <section>
+    <section>
         <div id="datepicker" class="calendari"></div>
-    </section> -->
+    </section>
     <nav id="botonera">
         <ul>
             <li id="b1"><figure class="icon-calendar"></figure><span>Agenda</span></li>
@@ -127,7 +132,7 @@
         </div>
         <div id="instafeed"></div>
     </section>
-    <section>
+    <section id="tabla_cal">
         <table>
             <caption>Calendari</caption>
             <tr>
@@ -140,49 +145,49 @@
                 <th>Dg</th>
             </tr>
             <tr>
-                <td id="cel1"></td>
-                <td id="cel2"></td>
-                <td id="cel3"></td>
-                <td id="cel4"></td>
-                <td id="cel5"></td>
-                <td id="cel6"></td>
-                <td id="cel7"></td>
+                <td data-id="1"></td>
+                <td data-id="2"></td>
+                <td data-id="3"></td>
+                <td data-id="4"></td>
+                <td data-id="5"></td>
+                <td data-id="6"></td>
+                <td data-id="7"></td>
             </tr>
             <tr>
-                <td id="cel8"></td>
-                <td id="cel9"></td>
-                <td id="cel10"></td>
-                <td id="cel11"></td>
-                <td id="cel12"></td>
-                <td id="cel13"></td>
-                <td id="cel14"></td>
+                <td data-id="8"></td>
+                <td data-id="9"></td>
+                <td data-id="10"></td>
+                <td data-id="11"></td>
+                <td data-id="12"></td>
+                <td data-id="13"></td>
+                <td data-id="14"></td>
             </tr>
             <tr>
-                <td id="cel15"></td>
-                <td id="cel16"></td>
-                <td id="cel17"></td>
-                <td id="cel18"></td>
-                <td id="cel19"></td>
-                <td id="cel20"></td>
-                <td id="cel21"></td>
+                <td data-id="15"></td>
+                <td data-id="16"></td>
+                <td data-id="17"></td>
+                <td data-id="18"></td>
+                <td data-id="19"></td>
+                <td data-id="20"></td>
+                <td data-id="21"></td>
             </tr>
             <tr>
-                <td id="cel22"></td>
-                <td id="cel23"></td>
-                <td id="cel24"></td>
-                <td id="cel25"></td>
-                <td id="cel26"></td>
-                <td id="cel27"></td>
-                <td id="cel28"></td>
+                <td data-id="22"></td>
+                <td data-id="23"></td>
+                <td data-id="24"></td>
+                <td data-id="25"></td>
+                <td data-id="26"></td>
+                <td data-id="27"></td>
+                <td data-id="28"></td>
             </tr>
             <tr>
-                <td id="cel29"></td>
-                <td id="cel30"></td>
-                <td id="cel31"></td>
-                <td id="cel32"></td>
-                <td id="cel33"></td>
-                <td id="cel34"></td>
-                <td id="cel35"></td>
+                <td data-id="29"></td>
+                <td data-id="30"></td>
+                <td data-id="31"></td>
+                <td data-id="32"></td>
+                <td data-id="33"></td>
+                <td data-id="34"></td>
+                <td data-id="35"></td>
             </tr>
         </table>
     </section>
@@ -208,6 +213,7 @@
     <script type="text/javascript" src="js/views/CondicioView.js"></script>
     <script type="text/javascript" src="js/views/NoticiaView.js"></script>
     <script type="text/javascript" src="js/views/ServeiView.js"></script>
+    <script type="text/javascript" src="js/views/DiaCalView.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/router/Enrutador.js"></script>
     <script type="text/javascript" src="vendors/instafeed.js"></script>
