@@ -9,7 +9,7 @@ var Enrutador = Backbone.Router.extend({
     index: onInit
  });
 
-// Crear colecciones + actualizar sus datos
+// Crear colecciones y actualizar sus datos
 function onInit(){
     
     // Crear una coleccion de Actos (vacia)
@@ -25,6 +25,7 @@ function onInit(){
         },
         findByDia: function(datos){
             filteredDia = this.filter(function(item){
+                console.log(datos)
                 return item.get('dia').indexOf(datos) != -1;
             });
         return new Actes(filteredDia);
@@ -42,7 +43,7 @@ function onInit(){
     // asignar Namespaces con la instancia de la coleccion
     serveis = new Serveis([]);
 
-    // Actualiza los datos desde la BD
+    // Actualizar la BD
     actualizaActes();
     actualizaServeis();
 

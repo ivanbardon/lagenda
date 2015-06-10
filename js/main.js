@@ -28,8 +28,7 @@ $(document).ready(function(){
     miRouter = new Enrutador;
     Backbone.history.start();
     calendar();
-    var fixMonth = Number (fecha.getMonth())+1;
-    hoy = fecha.getDate()+'/'+fixMonth+'/'+fecha.getFullYear();
+    hoy = fecha.getDate();
 
     // $('#datepicker').datepicker({
     //     showAnim: "drop",
@@ -78,11 +77,7 @@ $(document).ready(function(){
         listado.html('<ul><p>Avui al poble:</p></ul>');
         // $('#datepicker').show();
         var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesHoy});
-        $('#tabla_cal td').each(function (iterador){
-            var actesCal = actes.findByDia(this.attributes[0].value+'/'+fixMonth+'/'+fecha.getFullYear());
-            var that = this;
-            var diaCalView = new DiaCalView({el:that, collection: actesCal});
-        });
+        
         window.scrollTo(0, 500);
     });
 
