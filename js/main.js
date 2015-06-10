@@ -28,7 +28,7 @@ $(document).ready(function(){
     miRouter = new Enrutador;
     Backbone.history.start();
     calendar();
-    hoy = fecha.getDate();
+    
 
     // $('#datepicker').datepicker({
     //     showAnim: "drop",
@@ -235,6 +235,15 @@ function calendar(){
     var mes = fecha.getMonth();
     var horas = fecha.getHours();
     var minutos = fecha.getMinutes();
+    var fixMes = fecha.getMonth()+1;
+    var fixDia = function(){
+        if (fecha.getDate()<10){
+            return '0'+fecha.getDate();
+        }else{
+            return fecha.getDate()
+        }
+
+    }
     // Arreglos para a mostrar meses y días en Catalán
     var meses = ["Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre" ,"Novembre", "Desembre"];
     var diasSemana = ["Diumenge", "Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte"];
@@ -242,6 +251,17 @@ function calendar(){
     $('#div_dia').html(diasSemana[dia]);
     $('#div_num').html(numero);
     $('#div_mes').html(meses[mes]);
+
+    
+    //Arreglo de las fechas para mostrar los actos
+    
+
+    if (fixMes<10){
+        hoy = fixDia()+'/'+'0'+fixMes+'/'+fecha.getFullYear()
+    }else{
+        hoy = fixDia()+'/'+fixMes+'/'+fecha.getFullYear()
+    }
+    
 
     // Condicions per a asignar la farmacia de guardia
     // Viladot = 0
