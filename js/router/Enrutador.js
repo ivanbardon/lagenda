@@ -25,7 +25,6 @@ function onInit(){
         },
         findByDia: function(datos){
             filteredDia = this.filter(function(item){
-                console.log(datos)
                 return item.get('dia').indexOf(datos) != -1;
             });
         return new Actes(filteredDia);

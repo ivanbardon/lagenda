@@ -1,6 +1,7 @@
 // Namespaces
 var miRouter;
 var actes;
+var diasConActos = [];
 var serveis;
 var previsio;
 var noticies;
@@ -30,25 +31,27 @@ $(document).ready(function(){
     calendar();
     
 
-    // $('#datepicker').datepicker({
-    //     showAnim: "drop",
-    //     duration: "fast",
-    //     showOptions: {
-    //         direction: "left",
-    //     },
+    $('#datepicker').datepicker({
+        showAnim: "drop",
+        duration: "fast",
+        showOptions: {
+            direction: "left",
+        },
+        dateFormat: "dd/mm/yy",
 
 
-    //     onSelect: function (selec){
-    //         var actesSelec = actes.findByDia(selec);
-    //         limpiarContenedores();
-    //         retorn.toggle('drop', {direction: 'up'});
-    //         listado.html('<ul><li>'+selec+'</ul>');
-    //         $('#datepicker').show();
+        onSelect: function (selec){
+            var actesSelec = actes.findByDia(selec);
+            limpiarContenedores();
+            retorn.toggle('drop', {direction: 'up'});
+            listado.html('<ul><li>'+selec+'</ul>');
 
-    //         var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesSelec});
-    //         window.scrollTo(0, 890);
-    //     }
-    // }).hide();    
+            var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesSelec});
+            window.scrollTo(0, 890);
+        }
+    }).hide();
+
+      
 
     // Transiciones del Header
     tempsPortada.click(function(){
@@ -71,14 +74,21 @@ $(document).ready(function(){
     $('#b1').click(function(){
         limpiarContenedores();
         retorn.toggle('drop', {direction: 'up'});
+        $('#datepicker').show();
 
         var actesHoy = actes.findByDia(hoy);
 
         listado.html('<ul><p>Avui al poble:</p></ul>');
-        // $('#datepicker').show();
         var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesHoy});
         
         window.scrollTo(0, 500);
+
+        $('table a').each(function(){
+            if(diasConActos.indexOf(this.text)>=0){
+                var a = $(this.parentNode);
+                a.addClass('rojo')
+            }
+        })
     });
 
     // Vaciar el html de los contenedores y Crear la vista de los servicios
@@ -87,7 +97,7 @@ $(document).ready(function(){
         retorn.toggle('drop', {direction: 'up'});
         listado2.html('<ul></ul>');
         sectionInfo.show();
-        sectionInfo.appendTo('#listado2');
+        sectionInfo.prependTo('#listado2', true);
         var serveiView = new ServeiView({el:$('#listado2 ul'), collection: serveis});
         window.scrollTo(0, 500);
     });
@@ -124,6 +134,7 @@ $(document).ready(function(){
     retorn.click(function(){
         limpiarContenedores();
         botonera.show();
+        $('#datepicker').hide();
 
     });
 
@@ -165,7 +176,6 @@ function limpiarContenedores(){
     botonera.hide();
     sectionInfo.hide();
     retorn.hide();
-    $('#datepicker').hide();
 };
 
 // Funcion para manejar los datos en JSON que llegan desde yahoo weather
@@ -252,10 +262,11 @@ function calendar(){
     $('#div_num').html(numero);
     $('#div_mes').html(meses[mes]);
 
+
+
     
     //Arreglo de las fechas para mostrar los actos
     
-
     if (fixMes<10){
         hoy = fixDia()+'/'+'0'+fixMes+'/'+fecha.getFullYear()
     }else{
