@@ -29,26 +29,22 @@ $(document).ready(function(){
     miRouter = new Enrutador;
     Backbone.history.start();
     calendar();
-    
 
     $('#datepicker').datepicker({
-        showAnim: "drop",
-        duration: "fast",
-        showOptions: {
-            direction: "left",
-        },
+
         dateFormat: "dd/mm/yy",
 
-
-        onSelect: function (selec){
+        onSelect: function (selec, el){
             var actesSelec = actes.findByDia(selec);
-            limpiarContenedores();
-            retorn.toggle('drop', {direction: 'up'});
+
+
             listado.html('<ul><li>'+selec+'</ul>');
 
-            var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesSelec});
+            var acteView = new ActeView({el:$('#listado ul'), collection: actesSelec});
+
             window.scrollTo(0, 890);
         }
+
     }).hide();
 
       
@@ -79,16 +75,16 @@ $(document).ready(function(){
         var actesHoy = actes.findByDia(hoy);
 
         listado.html('<ul><p>Avui al poble:</p></ul>');
-        var botoActeView = new BotoActeView({el:$('#listado ul'), collection: actesHoy});
-        
-        window.scrollTo(0, 500);
-
+        var acteView = new ActeView({el:$('#listado ul'), collection: actesHoy});
         $('table a').each(function(){
             if(diasConActos.indexOf(this.text)>=0){
                 var a = $(this.parentNode);
                 a.addClass('rojo')
             }
-        })
+        });
+        
+        window.scrollTo(0, 500);
+
     });
 
     // Vaciar el html de los contenedores y Crear la vista de los servicios

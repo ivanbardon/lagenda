@@ -1,5 +1,5 @@
 //1º hago la vista para toda la colección de actos
-var BotoActeView = Backbone.View.extend({
+var ActeView = Backbone.View.extend({
 
     initialize: function () {
 		this.render();
