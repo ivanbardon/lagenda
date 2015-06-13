@@ -43,6 +43,14 @@ $(document).ready(function(){
             var acteView = new ActeView({el:$('#listado ul'), collection: actesSelec});
 
             window.scrollTo(0, 890);
+            el.on('show', function(){
+                $('table a').each(function(){
+                    if(diasConActos.indexOf(this.text)>=0){
+                        var a = $(this.parentNode);
+                        a.addClass('rojo')
+                    }
+                });
+            })
         }
 
     }).hide();
