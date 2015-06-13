@@ -37,25 +37,12 @@ $(document).ready(function(){
         onSelect: function (selec, el){
             var actesSelec = actes.findByDia(selec);
 
-
             listado.html('<ul><li>'+selec+'</ul>');
 
             var acteView = new ActeView({el:$('#listado ul'), collection: actesSelec});
-
-            window.scrollTo(0, 890);
-            el.on('show', function(){
-                $('table a').each(function(){
-                    if(diasConActos.indexOf(this.text)>=0){
-                        var a = $(this.parentNode);
-                        a.addClass('rojo')
-                    }
-                });
-            })
         }
 
-    }).hide();
-
-      
+    });
 
     // Transiciones del Header
     tempsPortada.click(function(){
@@ -84,14 +71,15 @@ $(document).ready(function(){
 
         listado.html('<ul><p>Avui al poble:</p></ul>');
         var acteView = new ActeView({el:$('#listado ul'), collection: actesHoy});
+        // Resaltado de los dias a la brava
         $('table a').each(function(){
             if(diasConActos.indexOf(this.text)>=0){
                 var a = $(this.parentNode);
                 a.addClass('rojo')
             }
         });
-        
-        window.scrollTo(0, 500);
+
+        window.scrollTo(0, 900);
 
     });
 
