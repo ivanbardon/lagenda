@@ -40,8 +40,10 @@ $(document).ready(function(){
             listado.html('<ul><li>'+selec+'</ul>');
 
             var acteView = new ActeView({el:$('#listado ul'), collection: actesSelec});
+            setTimeout(resaltarDias,100);
+            window.scrollTo(0,500)
         }
-
+        
     });
 
     // Transiciones del Header
@@ -72,13 +74,7 @@ $(document).ready(function(){
         listado.html('<ul><p>Avui al poble:</p></ul>');
         var acteView = new ActeView({el:$('#listado ul'), collection: actesHoy});
         // Resaltado de los dias a la brava
-        $('table a').each(function(){
-            if(diasConActos.indexOf(this.text)>=0){
-                var a = $(this.parentNode);
-                a.addClass('rojo')
-            }
-        });
-
+        resaltarDias();
         window.scrollTo(0, 900);
 
     });
@@ -227,6 +223,15 @@ function actualizaServeis(){
 
         }
     });
+};
+
+function resaltarDias(){
+    $('table a').each(function(){
+        if(diasConActos.indexOf(this.text)>=0){
+            var a = $(this.parentNode);
+            a.addClass('azul')
+        }
+    })
 };
 // Comparador del programa + impresion de la fecha
 function calendar(){
