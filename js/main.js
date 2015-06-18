@@ -30,6 +30,7 @@ $(document).ready(function(){
     miRouter = new Enrutador;
     Backbone.history.start();
     calendar();
+    headerTransitions();
 
     $('#datepicker').datepicker({
 
@@ -47,24 +48,6 @@ $(document).ready(function(){
               scrollTop: listado.offset().top
             },300);
         }
-    });
-
-    // Transiciones del Header
-    tempsPortada.click(function(){
-        sectionCal.toggle('fade', 'fast', function(){
-            sectionMeteo.toggle('drop',{direction:'right'}, 'fast');
-            limpiarContenedores();
-            $('#datepicker').hide();
-        })
-    });
-
-    // Transiciones del Header
-    sectionMeteo.click(function(){
-        sectionMeteo.toggle('fade', 'fast', function(){
-            sectionCal.toggle('drop', 'fast', function(){
-                botonera.show()
-            });
-        })
     });
 
     // Vaciar el html de los contenedores y Crear la vista de los actos
@@ -179,6 +162,25 @@ $(document).ready(function(){
         }
     });
 });
+
+var headerTransitions = function(){
+    // Transiciones del Header
+    tempsPortada.click(function(){
+        sectionCal.toggle('fade', 'fast', function(){
+            sectionMeteo.toggle('drop',{direction:'right'}, 'fast');
+            limpiarContenedores();
+            $('#datepicker').hide();
+        })
+    });
+
+    sectionMeteo.click(function(){
+        sectionMeteo.toggle('fade', 'fast', function(){
+            sectionCal.toggle('drop', 'fast', function(){
+                botonera.show()
+            });
+        })
+    });
+};
 
 function limpiarContenedores(){
     listado.html('');
