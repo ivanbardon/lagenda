@@ -51,6 +51,7 @@ $(document).ready(function(){
         sectionCal.toggle('fade', 'fast', function(){
             sectionMeteo.toggle('drop',{direction:'right'}, 'fast');
             limpiarContenedores();
+            $('#datepicker').hide();
         })
     });
 
@@ -103,8 +104,8 @@ $(document).ready(function(){
     $('#b4').click(function(){
         limpiarContenedores();
         retorn.toggle('drop', {direction: 'up'});
-        // if(!fotos.length)feed.run();
-        // else console.log('vale');
+        if(!fotos.length)feed.run();
+        else console.log('vale');
         instafeed.show();
         window.scrollTo(0, 500);
     });
@@ -127,33 +128,33 @@ $(document).ready(function(){
     });
 
     //Peticion ajax para mostrar la noticias del blog ulldecona.cat
-    // $.ajax({
+    $.ajax({
 
-    //     url:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.ulldecona.cat%2Ffeed%2F%22&format=json&diagnostics=true&callback=getRSSUllde"
-    // });
+        url:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.ulldecona.cat%2Ffeed%2F%22&format=json&diagnostics=true&callback=getRSSUllde"
+    });
     
-    // // Peticion ajax a yahoo para mostrar el tiempo
-    // $.ajax({
-    //     url:"//query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=776252 and u='c'&format=json&callback=getWeather"
-    // });
-    // // Creo una instacia de instafeed para traer fotos de instagram
-    // var feed = new Instafeed({
-    //     get : 'tagged',
-    //     tagName : 'ulldecona',
-    //     clientId : '8a96efaaef1b4e1796d0a2bc1a37f0c6',
-    //     sortBy : 'most-liked',
-    //     resolution : 'low_resolution',
-    //     template: '<img src="{{image}}" />{{model.user.username}}<div class="icon-cor">{{likes}}</div><br>',
-    //     after : function (){
-    //         // Foto es una funcion que devuelve un entero random entre un min y un max para elegir una foto al azar
-    //         var foto = function getRandomInt(min, max) {
-    //             return Math.floor(Math.random() * (max - min)) + min;
-    //         }
-    //         // La variable fotos almacena un array de las fotos que nos llegan y le asigna a section_meteo una foto al azar
-    //         fotos = $('#instafeed img').clone();
-    //         sectionMeteo.prepend(fotos[foto(0,fotos.length+1)])
-    //     }
-    // });
+    // Peticion ajax a yahoo para mostrar el tiempo
+    $.ajax({
+        url:"//query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=776252 and u='c'&format=json&callback=getWeather"
+    });
+    // Creo una instacia de instafeed para traer fotos de instagram
+    var feed = new Instafeed({
+        get : 'tagged',
+        tagName : 'ulldecona',
+        clientId : '8a96efaaef1b4e1796d0a2bc1a37f0c6',
+        sortBy : 'most-liked',
+        resolution : 'low_resolution',
+        template: '<img src="{{image}}" />{{model.user.username}}<div class="icon-cor">{{likes}}</div><br>',
+        after : function (){
+            // Foto es una funcion que devuelve un entero random entre un min y un max para elegir una foto al azar
+            var foto = function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+            // La variable fotos almacena un array de las fotos que nos llegan y le asigna a section_meteo una foto al azar
+            fotos = $('#instafeed img').clone();
+            sectionMeteo.prepend(fotos[foto(0,fotos.length+1)])
+        }
+    });
 });
 
 function limpiarContenedores(){
