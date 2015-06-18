@@ -11,7 +11,12 @@ var ActeView = Backbone.View.extend({
 
             if ($(this).find('article').css('display')==='none'){
                 $(this).find('article').slideDown('fast');
-            }
+            };
+            body.stop(true,true).animate(
+            {
+              //realizamos la animacion hacia el ancla
+              scrollTop: el.offset().top
+            },500);
         })
 	},
     render: function(){

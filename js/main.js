@@ -10,6 +10,7 @@ var guard;
 var fecha;
 var hoy;
 var fotos = {};
+var body = $('body,html');
 
 // caché de los elementos jQuery
 var botonera = $('#botonera');
@@ -41,9 +42,11 @@ $(document).ready(function(){
 
             var acteView = new ActeView({el:$('#listado ul'), collection: actesSelec});
             setTimeout(resaltarDias,100);
-            window.scrollTo(0,500)
+            body.stop(true,true).animate(
+            {
+              scrollTop: listado.offset().top
+            },300);
         }
-        
     });
 
     // Transiciones del Header
@@ -76,7 +79,11 @@ $(document).ready(function(){
         var acteView = new ActeView({el:$('#listado ul'), collection: actesHoy});
         // Resaltado de los dias a la brava
         resaltarDias();
-        window.scrollTo(0, 900);
+        body.stop(true,true).animate(
+        {
+          //realizamos la animacion hacia el ancla
+          scrollTop: retorn.offset().top
+        },300);
 
     });
 
@@ -85,13 +92,13 @@ $(document).ready(function(){
         limpiarContenedores();
         retorn.toggle('drop', {direction: 'up'});
         listado2.html('<ul></ul>');
-        listado2.html += '<section id="section_info"><article><p>Farmàcia de guàrdia:</p>
-                <div id="guardia_nombre"></div>
-                <div id="b5" class="icon-phone2"></div>
-            </article>
-        </section>';
+        sectionInfo.show();
         var serveiView = new ServeiView({el:$('#listado2 ul'), collection: serveis});
-        window.scrollTo(0, 500);
+        body.stop(true,true).animate(
+        {
+          //realizamos la animacion hacia el ancla
+          scrollTop: retorn.offset().top
+        },300);
     });
 
     // Vaciar el html de los contenedores y Crear la vista de Noticias
@@ -99,7 +106,11 @@ $(document).ready(function(){
         limpiarContenedores();
         retorn.toggle('drop', {direction: 'up'});
         var botoNoticiaView = new NoticiaView({el:contenedor, collection: noticies});
-        window.scrollTo(0, 500);
+        body.stop(true,true).animate(
+        {
+          //realizamos la animacion hacia el ancla
+          scrollTop: retorn.offset().top
+        },300);
         
     });
 
@@ -110,7 +121,11 @@ $(document).ready(function(){
         if(!fotos.length)feed.run();
         else console.log('vale');
         instafeed.show();
-        window.scrollTo(0, 500);
+        body.stop(true,true).animate(
+        {
+          //realizamos la animacion hacia el ancla
+          scrollTop: retorn.offset().top
+        },300);
     });
 
     // Capacidad de llamar por telefono desde el panel de farmacia de guardia
@@ -122,11 +137,16 @@ $(document).ready(function(){
         window.location.href='social.html';
     });
 
-    // Boton de retorno al menu y limpieza de contenedores
+    // Boton de retorn al menu y limpieza de contenedores
     retorn.click(function(){
         limpiarContenedores();
         botonera.show();
         $('#datepicker').hide();
+        body.stop(true,true).animate(
+        {
+          //realizamos la animacion hacia el ancla
+          scrollTop: botonera.offset().top
+        },300);
 
     });
 
@@ -167,6 +187,7 @@ function limpiarContenedores(){
     instafeed.hide();
     botonera.hide();
     retorn.hide();
+    sectionInfo.hide();
 };
 
 // Funcion para manejar los datos en JSON que llegan desde yahoo weather
