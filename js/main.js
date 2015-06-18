@@ -85,8 +85,11 @@ $(document).ready(function(){
         limpiarContenedores();
         retorn.toggle('drop', {direction: 'up'});
         listado2.html('<ul></ul>');
-        sectionInfo.show();
-        sectionInfo.prependTo('#listado2', true);
+        listado2.html += '<section id="section_info"><article><p>Farmàcia de guàrdia:</p>
+                <div id="guardia_nombre"></div>
+                <div id="b5" class="icon-phone2"></div>
+            </article>
+        </section>';
         var serveiView = new ServeiView({el:$('#listado2 ul'), collection: serveis});
         window.scrollTo(0, 500);
     });
@@ -163,7 +166,6 @@ function limpiarContenedores(){
     contenedor.html('');
     instafeed.hide();
     botonera.hide();
-    sectionInfo.hide();
     retorn.hide();
 };
 
