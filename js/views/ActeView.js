@@ -15,7 +15,7 @@ var ActeView = Backbone.View.extend({
             body.stop(true,true).animate(
             {
               //realizamos la animacion hacia el ancla
-              scrollTop: el.offset().top
+              scrollTop: listado.offset().top
             },500);
         })
 	},

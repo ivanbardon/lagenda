@@ -92,7 +92,7 @@ $(document).ready(function(){
         body.stop(true,true).animate(
         {
           //realizamos la animacion hacia el ancla
-          scrollTop: retorn.offset().top
+          scrollTop: listado.offset().top
         },300);
         
     });
@@ -161,6 +161,15 @@ $(document).ready(function(){
             sectionMeteo.prepend(fotos[foto(0,fotos.length+1)])
         }
     });
+    $('#panel-example').scotchPanel({
+        containerSelector: 'body', // As a jQuery Selector
+        direction: 'left', // Make it toggle in from the left
+        duration: 300, // Speed in ms how fast you want it to be
+        transition: 'ease', // CSS3 transition type: linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(P1x,P1y,P2x,P2y)
+        clickSelector: '.toggle-panel', // Enables toggling when clicking elements of this class
+        distanceX: '70%', // Size fo the toggle
+        enableEscapeKey: true // Clicking Esc will close the panel
+    });
 });
 
 var headerTransitions = function(){
@@ -176,7 +185,9 @@ var headerTransitions = function(){
     sectionMeteo.click(function(){
         sectionMeteo.toggle('fade', 'fast', function(){
             sectionCal.toggle('drop', 'fast', function(){
-                botonera.show()
+                botonera.show();
+                retorn.hide()
+
             });
         })
     });
@@ -259,6 +270,7 @@ function resaltarDias(){
         }
     })
 };
+
 // Comparador del programa + impresion de la fecha
 function calendar(){
     // Variables para capturar la fecha del navegador
