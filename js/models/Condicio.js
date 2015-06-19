@@ -9,7 +9,7 @@ var Condicio = Backbone.Model.extend({
 			icono1.addClass('icon-solinubol');
 			icono2.addClass('icon-solinubol');
 			this.set('text','Sol i nubol')
-		}else if (codi=='31'||codi=='32'){
+		}else if (codi=='31'||codi=='32'||codi=='34'){
 			icono1.addClass('icon-sol');
 			icono2.addClass('icon-sol');
 			this.set('text','Calor')
