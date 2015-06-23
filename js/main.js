@@ -11,6 +11,7 @@ var fecha;
 var hoy;
 var fotos = {};
 var body = $('body,html');
+var menuLateral = $('#menu_lateral');
 
 // caché de los elementos jQuery
 var botonera = $('#botonera');
@@ -65,7 +66,7 @@ $(document).ready(function(){
         body.stop(true,true).animate(
         {
           //realizamos la animacion hacia el ancla
-          scrollTop: retorn.offset().top
+          scrollTop: listado.offset().top
         },300);
 
     });
@@ -162,14 +163,21 @@ $(document).ready(function(){
         }
     });
 
-    $('#menu_lateral').scotchPanel({
+    menuLateral.scotchPanel({
         containerSelector: 'body', // As a jQuery Selector
         direction: 'left', // Make it toggle in from the left
         duration: 100, // Speed in ms how fast you want it to be
         transition: 'ease-in', // CSS3 transition type: linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(P1x,P1y,P2x,P2y)
         clickSelector: '.toggle-panel', // Enables toggling when clicking elements of this class
-        distanceX: '85%', // Size fo the toggle
-        enableEscapeKey: true // Clicking Esc will close the panel
+        distanceX: '75%', // Size fo the toggle
+        enableEscapeKey: true, // Clicking Esc will close the panel
+        afterPanelOpen: function(){
+            $('header, section, #retorn, #contenedor_principal, #botonera').one('click', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                menuLateral.close();
+            })
+        }
     });
 });
 
