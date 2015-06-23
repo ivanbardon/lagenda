@@ -10,6 +10,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="traslucent">
     <meta name="apple-mobile-web-app-title" content="l'Agenda">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"  />
+    <link rel="apple-touch-icon" sizes="120x120" href="images/logo.png">
+    <link rel="stylesheet" type="text/css" href="vendors/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/estilos.css" />
+
 
     <!-- Area de Templates -->
     <script type="text/template" id="dia_template">
@@ -62,17 +67,24 @@
     <!-- Fin del area de Templates -->
 </head>
 <body>
-    <div id="panel-example">
-        <h2>Whatever you want in your panel</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, blanditiis.</p>
+    <div id="menu_lateral">
+        <h2>Estic en fase de desarrollo</h2>
+        <p>Les dades que es mostren son fiables pero encara estic definint les vistes</p>
+        <p>Aquesta aplicació es una Single Page Aplicatión per lo tant NO aniras carregant diferents pagines, tot pasa per una unica URL, olvidat del botó enrere del móbil i sigues lliure de remenar per la app del poble</p>
+        <p>Treballo cada dia per crear aquest servei</p>
+        <p>Espero que et sigue útil</p>
+        <p>Ivan Bardon</p>
+    </div>
+    <div id="barra_menu">
+        <span class="toggle-panel">Menu</span>
+        <h1>l'Agenda dels falduts</h1>
+        <div class="temps_portada">
+            <div id="icono_actual_weather"></div>
+            <div id="temp_actual"></div>
+        </div>
     </div>
     <header>
         <section id="section_cal">
-            <a href="#" class="toggle-panel">Toggle Panel</a>
-            <div class="temps_portada">
-                <div id="icono_actual_weather"></div>
-                <div id="temp_actual"></div>
-            </div>
             <div class="div_cal">
                 <div id="div_dia"></div>
                 <div id="div_num"></div>
@@ -136,11 +148,8 @@
     </footer>
 
     <!-- Vendors -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"  />
-    <link rel="apple-touch-icon" sizes="120x120" href="images/logo.png">
-    <link rel="stylesheet" type="text/css" href="vendors/normalize.css" />
+    
     <link rel="stylesheet" type="text/css" href="vendors/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="css/estilos.css" />
     <script type="text/javascript" src="vendors/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="vendors/underscore.js"></script>
     <script type="text/javascript" src="vendors/backbone.js"></script>

@@ -161,13 +161,14 @@ $(document).ready(function(){
             sectionMeteo.prepend(fotos[foto(0,fotos.length+1)])
         }
     });
-    $('#panel-example').scotchPanel({
+
+    $('#menu_lateral').scotchPanel({
         containerSelector: 'body', // As a jQuery Selector
         direction: 'left', // Make it toggle in from the left
-        duration: 300, // Speed in ms how fast you want it to be
-        transition: 'ease', // CSS3 transition type: linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(P1x,P1y,P2x,P2y)
+        duration: 100, // Speed in ms how fast you want it to be
+        transition: 'ease-in', // CSS3 transition type: linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(P1x,P1y,P2x,P2y)
         clickSelector: '.toggle-panel', // Enables toggling when clicking elements of this class
-        distanceX: '70%', // Size fo the toggle
+        distanceX: '85%', // Size fo the toggle
         enableEscapeKey: true // Clicking Esc will close the panel
     });
 });
@@ -177,6 +178,8 @@ var headerTransitions = function(){
     tempsPortada.click(function(){
         sectionCal.toggle('fade', 'fast', function(){
             sectionMeteo.toggle('drop',{direction:'right'}, 'fast');
+            tempsPortada.hide();
+            $('.toggle-panel').hide();
             limpiarContenedores();
             $('#datepicker').hide();
         })
@@ -185,6 +188,8 @@ var headerTransitions = function(){
     sectionMeteo.click(function(){
         sectionMeteo.toggle('fade', 'fast', function(){
             sectionCal.toggle('drop', 'fast', function(){
+                tempsPortada.show();
+                $('.toggle-panel').show();
                 botonera.show();
                 retorn.hide()
 
