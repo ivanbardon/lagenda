@@ -1,5 +1,4 @@
 // Namespaces
-var miRouter;
 var actes;
 var diasConActos = [];
 var serveis;

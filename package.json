@@ -1,0 +1,24 @@
+{
+  "name": "lagenda",
+  "version": "1.0.0",
+  "description": "lagenda de ulldecona",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanbardon/lagenda.git"
+  },
+  "author": "ivan bardon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivanbardon/lagenda/issues"
+  },
+  "homepage": "https://github.com/ivanbardon/lagenda#readme",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "express": "^4.13.4",
+    "jade": "^1.11.0"
+  }
+}
