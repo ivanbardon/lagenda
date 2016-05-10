@@ -1,6 +1,5 @@
 // Namespaces
 var actes;
-var diasConActos = [];
 var serveis;
 var previsio;
 var noticies;
@@ -9,8 +8,8 @@ var guard;
 var fecha;
 var hoy;
 var fotos = {};
-var body = $('body,html');
 var menuLateral = $('#menu_lateral');
+var urlWeather = "";
 
 // caché de los elementos jQuery
 var botonera = $('#botonera');
@@ -21,7 +20,6 @@ var contenedor = $('#contenedor');
 var instafeed = $('#instafeed');
 var sectionInfo = $('#section_info');
 var sectionCal = $('#section_cal');
-var retorn = $('#retorn');
 var tempsPortada = $('.temps_portada');
 
 $(document).ready(function(){
@@ -78,19 +76,8 @@ $(document).ready(function(){
 
 });
 
-
-function limpiarContenedores(){
-    listado.html('');
-    listado2.html('');
-    contenedor.html('');
-    instafeed.hide();
-    botonera.hide();
-    retorn.hide();
-    sectionInfo.hide();
-};
-
 // Funcion para manejar los datos en JSON que llegan desde yahoo weather
-var getWeather = function(data) {
+$.getJSON(urlWeather, function(data) {
     var weather = data.query.results.channel;
     var item = data.query.results.channel.item;
     var condition = data.query.results.channel.item.condition;
@@ -112,7 +99,7 @@ var getWeather = function(data) {
     });
     condicio = new condicioCollection(condition);
     var condicioView = new CondicioView({el:$('#meteo_actual'), collection:condicio});
-};
+});
 // Funcion para manejar los datos que obtengo del ayuntamiento
 var getRSSUllde = function(data){
     var items = data.query.results.body.rss.channel.item;
