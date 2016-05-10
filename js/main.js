@@ -26,14 +26,11 @@ var tempsPortada = $('.temps_portada');
 
 $(document).ready(function(){
 
-    // Instancia del router que tambien esta haciendo de controlador en conjunto con index.php
-    miRouter = new Enrutador;
-    Backbone.history.start();
     calendar();
 
     var Actes = Backbone.Collection.extend(
     {
-        url: "index.php/actes",
+        url: "actes.json",
         model: Acte,
         findByTipo: function(datos){
             filteredTipo = this.filter(function(item){
@@ -54,18 +51,12 @@ $(document).ready(function(){
     // Crear una coleccion de Servicios (vacia)
     var Serveis = Backbone.Collection.extend(
     {
-        url: "index.php/serveis",
+        url: "serveis.json",
         model: Servei
     });
     // asignar Namespaces con la instancia de la coleccion
     serveis = new Serveis([]);
 
-    // Actualizar la BD
-    actualizaActes();
-    actualizaServeis();
-
-
-    
     // Creo una instacia de instafeed para traer fotos de instagram
     var feed = new Instafeed({
         get : 'tagged',
