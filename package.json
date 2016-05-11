@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/ivanbardon/lagenda#readme",
   "dependencies": {
-    
+    "express": "^4.13.4",
+    "pug": "^2.0.0-alpha7",
+    "request": "^2.72.0"
   }
 }
