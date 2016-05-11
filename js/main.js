@@ -57,6 +57,8 @@ $(document).ready(function(){
     // // asignar Namespaces con la instancia de la coleccion
     // serveis = new Serveis([]);
 
+    
+
     // Creo una instacia de instafeed para traer fotos de instagram
     var feed = new Instafeed({
         get : 'tagged',
@@ -83,7 +85,7 @@ $(document).ready(function(){
         var item = data.query.results.channel.item;
         var condition = data.query.results.channel.item.condition;
         var forecast = data.query.results.channel.item.forecast;
-//        console.log(weather);
+
         temp_actual.append('<p>'+ condition.temp +'°</p>');
 
         // Coleccion y vista para la prevision meteo
@@ -121,10 +123,17 @@ $.getJSON(urlRSS, function(data){
     }
     
     var noticiesCollection = Backbone.Collection.extend({
-        model: Noticia
+        model: Noticia,
+        findByTitul: function(datos){
+            filteredTitul = this.filter(function(item){
+                return item.get('titul').indexOf(datos) != -1;
+            });
+        return new noticiesCollection(filteredTitul);
+        }
     });
 
     noticies = new noticiesCollection(items);
+
     var noticiaView = new NoticiaView({el:$('#contenedor'), collection:noticies});
     
 });
