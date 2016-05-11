@@ -1,97 +1,57 @@
 body {
   font-size: 20px;
   color: #2e2e2e;
-  font-family: Slabo;
-  height: auto;
+  height: 100%;
   width: 100%;
-  overflow-x: hidden;
 }
-#barra_menu {
-  border-bottom: 1px dotted #000;
-  width: 100%;
-  height: 45px;
-}
-#barra_menu h1 {
-  font-size: 22px;
-  padding: 0;
-  width: 220px;
-  margin-top: 15px;
-  margin-left: 65px;
-}
-#barra_menu span {
-  float: left;
-  color: #e74c3c;
-  width: 30px;
-  margin-left: 5px;
-}
-#barra_menu .temps_portada {
+.temps_portada {
   font-size: 25px;
   float: right;
-  margin-top: -50px;
-  margin-right: 5px;
 }
-#barra_menu .temps_portada #temp_actual {
+.temps_portada #temp_actual {
   font-size: 0.8em;
-  margin-top: -18px;
-  padding: 0px;
+  margin-right: 10px;
 }
 header {
   width: 100%;
-  height: 450px;
-  overflow-x: hidden;
+  height: 100%;
   margin-bottom: 30px;
   border-bottom: 1px solid #000;
 }
 header section {
   width: 100%;
-  height: auto;
+  height: 100%;
   cursor: pointer;
 }
 header #section_cal {
-  height: 450px;
-  width: 320px;
-  position: relative;
-  left: 50%;
-  margin-left: -150px;
-  margin-top: 20px;
+  height: 100%;
+  width: 100%;
 }
 header #section_cal .div_cal {
   font-family: DancingScript;
-  width: 270px;
-  height: 320px;
-  position: relative;
-  left: 50%;
-  top: 35%;
-  margin-top: -150px;
-  margin-left: -135px;
   text-align: center;
   font-size: 62px;
 }
 header #section_cal .div_cal #div_num {
   font-size: 80px;
-  position: relative;
-  width: 200px;
-  left: 50%;
-  margin-left: -100px;
 }
 header #section_cal .div_cal #event_actual {
   font-size: 30px;
   margin-top: 20px;
 }
 header #section_meteo {
-  display: none;
   padding: 5px;
   width: 100%;
   height: 100%;
 }
 header #section_meteo #div_forecast {
   width: 100%;
-  height: 200px;
+  height: 100%;
 }
 header #section_meteo #div_forecast article {
   display: inline-block;
   width: 30%;
-  height: 200px;
+  height: 100%;
   border: 1px solid #000;
   vertical-align: top;
 }
@@ -109,7 +69,7 @@ header #section_meteo #div_forecast article .maxmin {
 }
 header #section_meteo #meteo_actual {
   width: 100%;
-  height: 100px;
+  height: 100%;
 }
 header #section_meteo #meteo_actual div {
   display: inline-block;
@@ -121,7 +81,7 @@ header #section_meteo #meteo_actual #meteo_icon {
 }
 #section_info {
   width: 100%;
-  height: auto;
+  height: 100%;
   text-align: center;
   margin: 0 auto;
   padding: 0px;
@@ -141,12 +101,10 @@ header #section_meteo #meteo_actual #meteo_icon {
 }
 #contenedor_principal {
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
 }
-#instafeed {
-  display: none;
-}
+#instafeed,
 footer {
   text-align: center;
   margin-top: 50px;
@@ -154,10 +112,7 @@ footer {
 #listado ul {
   padding: 0px;
   margin: 0px;
-  width: 300px;
-  position: relative;
-  left: 50%;
-  margin-left: -150px;
+  width: 100%;
 }
 #listado ul li {
   cursor: pointer;
@@ -167,35 +122,12 @@ footer {
   border: 1px solid #000;
   margin-bottom: 15px;
 }
-#listado ul li .headerE {
-  border-bottom: 1px dotted #000;
-}
-#listado ul li .headerE .localE {
-  font-size: 0.7em;
-}
-#listado ul li .headerE .diaE {
-  font-size: 0.7em;
-}
-#listado ul li .contentE {
-  display: none;
-  text-align: center;
-}
 #listado2 ul {
   margin: 0 auto;
   padding: 0;
 }
 #listado2 ul img {
-  width: 290px;
-  position: relative;
-  left: 50%;
-  margin-left: -145px;
-}
-.servei {
-  width: 90%;
-  height: auto;
-  border: 1px solid #000;
-  border-radius: 5px;
-  margin: 15px;
+  width: 100%;
 }
 .noticia_template {
   border: 1px solid #000;

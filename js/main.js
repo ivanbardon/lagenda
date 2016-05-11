@@ -9,7 +9,8 @@ var fecha;
 var hoy;
 var fotos = {};
 var menuLateral = $('#menu_lateral');
-var urlWeather = "";
+var urlWeather = "//query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=776252 and u='c'&format=json";
+var urlRSS = "";
 
 // caché de los elementos jQuery
 var botonera = $('#botonera');
@@ -21,39 +22,40 @@ var instafeed = $('#instafeed');
 var sectionInfo = $('#section_info');
 var sectionCal = $('#section_cal');
 var tempsPortada = $('.temps_portada');
+var temp_actual = $('#temp_actual');
 
 $(document).ready(function(){
 
     calendar();
 
-    var Actes = Backbone.Collection.extend(
-    {
-        url: "actes.json",
-        model: Acte,
-        findByTipo: function(datos){
-            filteredTipo = this.filter(function(item){
-                return item.get('tipo').indexOf(datos) != -1;
-            });
-        return new Actes(filteredTipo);
-        },
-        findByDia: function(datos){
-            filteredDia = this.filter(function(item){
-                return item.get('dia').indexOf(datos) != -1;
-            });
-        return new Actes(filteredDia);
-        }
-    });
-    // asignar Namespaces con la instancia de la coleccion
-    actes = new Actes([]);
+    // var Actes = Backbone.Collection.extend(
+    // {
+    //     url: "actes.json",
+    //     model: Acte,
+    //     findByTipo: function(datos){
+    //         filteredTipo = this.filter(function(item){
+    //             return item.get('tipo').indexOf(datos) != -1;
+    //         });
+    //     return new Actes(filteredTipo);
+    //     },
+    //     findByDia: function(datos){
+    //         filteredDia = this.filter(function(item){
+    //             return item.get('dia').indexOf(datos) != -1;
+    //         });
+    //     return new Actes(filteredDia);
+    //     }
+    // });
+    // // asignar Namespaces con la instancia de la coleccion
+    // actes = new Actes([]);
 
     // Crear una coleccion de Servicios (vacia)
-    var Serveis = Backbone.Collection.extend(
-    {
-        url: "serveis.json",
-        model: Servei
-    });
-    // asignar Namespaces con la instancia de la coleccion
-    serveis = new Serveis([]);
+    // var Serveis = Backbone.Collection.extend(
+    // {
+    //     url: "serveis.json",
+    //     model: Servei
+    // });
+    // // asignar Namespaces con la instancia de la coleccion
+    // serveis = new Serveis([]);
 
     // Creo una instacia de instafeed para traer fotos de instagram
     var feed = new Instafeed({
@@ -73,43 +75,47 @@ $(document).ready(function(){
             sectionMeteo.prepend(fotos[foto(0,fotos.length+1)])
         }
     });
+    
+    // feed.run();
+
+    $.getJSON(urlWeather, function(data) {
+        var weather = data.query.results.channel;
+        var item = data.query.results.channel.item;
+        var condition = data.query.results.channel.item.condition;
+        var forecast = data.query.results.channel.item.forecast;
+//        console.log(weather);
+        temp_actual.append('<p>'+ condition.temp +'°</p>');
+
+        // Coleccion y vista para la prevision meteo
+        var previsioCollection = Backbone.Collection.extend({
+            model: Previsio
+        });
+        previsio = new previsioCollection(forecast);
+        var previsioView = new PrevisioView({el:$('#div_forecast'), collection:previsio});
+
+        // Coleccion y vista para la condicion meteo
+        var condicioCollection = Backbone.Collection.extend({
+            model: Condicio
+        });
+        condicio = new condicioCollection(condition);
+        var condicioView = new CondicioView({el:$('#meteo_actual'), collection:condicio});
+    });
 
 });
 
 // Funcion para manejar los datos en JSON que llegan desde yahoo weather
-$.getJSON(urlWeather, function(data) {
-    var weather = data.query.results.channel;
-    var item = data.query.results.channel.item;
-    var condition = data.query.results.channel.item.condition;
-    var forecast = data.query.results.channel.item.forecast;
-    forecast.length=3;
-    // console.log(condition);
-    $('#temp_actual').append('<p>'+ condition.temp +'°</p>');
 
-    // Coleccion y vista para la prevision meteo
-    var previsioCollection = Backbone.Collection.extend({
-        model: Previsio
-    });
-    previsio = new previsioCollection(forecast);
-    var previsioView = new PrevisioView({el:$('#div_forecast'), collection:previsio});
-
-    // Coleccion y vista para la condicion meteo
-    var condicioCollection = Backbone.Collection.extend({
-        model: Condicio
-    });
-    condicio = new condicioCollection(condition);
-    var condicioView = new CondicioView({el:$('#meteo_actual'), collection:condicio});
-});
 // Funcion para manejar los datos que obtengo del ayuntamiento
-var getRSSUllde = function(data){
-    var items = data.query.results.body.rss.channel.item;
+$.getJSON(urlRSS, function(data){
 
+    var items = data.query.results.body.rss.channel.item;
     var noticiesCollection = Backbone.Collection.extend({
         model: Noticia
     });
+
     noticies = new noticiesCollection(items);
     
-};
+});
 
 
 
