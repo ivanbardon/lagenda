@@ -9,8 +9,8 @@ var fecha;
 var hoy;
 var fotos = {};
 var menuLateral = $('#menu_lateral');
-var urlWeather = "//query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=776252 and u='c'&format=json";
-var urlRSS = "";
+var urlWeather = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid=776252 and u='c'&format=json&diagnostics=true";
+var urlRSS = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fulldecona.cat%2Fnot%2F'%20and%20xpath%3D'%2F%2Fdiv%5B%40id%3D%22main%22%5D'&format=json&diagnostics=true";
 
 // caché de los elementos jQuery
 var botonera = $('#botonera');
@@ -108,12 +108,24 @@ $(document).ready(function(){
 // Funcion para manejar los datos que obtengo del ayuntamiento
 $.getJSON(urlRSS, function(data){
 
-    var items = data.query.results.body.rss.channel.item;
+    var a = data.query.results.div.div.a;
+    var b = data.query.results.div.div.p;
+
+    var items = [];
+    var totalAes = a.length;
+
+    for(var i = 0;i<totalAes;i++){
+        var aux = {"titul":a[i].content,"text":b[i]};
+        items.push(aux);
+
+    }
+    
     var noticiesCollection = Backbone.Collection.extend({
         model: Noticia
     });
 
     noticies = new noticiesCollection(items);
+    var noticiaView = new NoticiaView({el:$('#contenedor'), collection:noticies});
     
 });
 
