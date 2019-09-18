@@ -78,7 +78,7 @@ $(document).ready(function(){
         }
     });
     
-    feed.run();
+    // feed.run();
 
     $.getJSON(urlWeather, function(data) {
         var weather = data.query.results.channel;
