@@ -28,34 +28,34 @@ $(document).ready(function(){
 
     calendar();
 
-    // var Actes = Backbone.Collection.extend(
-    // {
-    //     url: "actes.json",
-    //     model: Acte,
-    //     findByTipo: function(datos){
-    //         filteredTipo = this.filter(function(item){
-    //             return item.get('tipo').indexOf(datos) != -1;
-    //         });
-    //     return new Actes(filteredTipo);
-    //     },
-    //     findByDia: function(datos){
-    //         filteredDia = this.filter(function(item){
-    //             return item.get('dia').indexOf(datos) != -1;
-    //         });
-    //     return new Actes(filteredDia);
-    //     }
-    // });
-    // // asignar Namespaces con la instancia de la coleccion
-    // actes = new Actes([]);
+    var Actes = Backbone.Collection.extend(
+    {
+        url: "actes.json",
+        model: Acte,
+        findByTipo: function(datos){
+            filteredTipo = this.filter(function(item){
+                return item.get('tipo').indexOf(datos) != -1;
+            });
+        return new Actes(filteredTipo);
+        },
+        findByDia: function(datos){
+            filteredDia = this.filter(function(item){
+                return item.get('dia').indexOf(datos) != -1;
+            });
+        return new Actes(filteredDia);
+        }
+    });
+    // asignar Namespaces con la instancia de la coleccion
+    actes = new Actes([]);
 
-    // Crear una coleccion de Servicios (vacia)
-    // var Serveis = Backbone.Collection.extend(
-    // {
-    //     url: "serveis.json",
-    //     model: Servei
-    // });
-    // // asignar Namespaces con la instancia de la coleccion
-    // serveis = new Serveis([]);
+    Crear una coleccion de Servicios (vacia)
+    var Serveis = Backbone.Collection.extend(
+    {
+        url: "serveis.json",
+        model: Servei
+    });
+    // asignar Namespaces con la instancia de la coleccion
+    serveis = new Serveis([]);
 
     
 
@@ -78,7 +78,7 @@ $(document).ready(function(){
         }
     });
     
-    // feed.run();
+    feed.run();
 
     $.getJSON(urlWeather, function(data) {
         var weather = data.query.results.channel;
