@@ -241,27 +241,6 @@ var getWeather = function(data) {
 
 
 
-// Pedir a la base de datos los servicios y mostrar la farmacia de guardia en la pantalla principal
-function actualizaServeis(){
-    serveis.fetch({
-        success: function(){
-            console.log('Base de dades per a els serveis actualitzada');
-            $('#guardia_nombre').html(serveis.models[guard].get('nombre'));
-            $('#b5').html(serveis.models[guard].get('tlf'));
-
-
-        }
-    });
-};
-
-function resaltarDias(){
-    $('table a').each(function(){
-        if(diasConActos.indexOf(this.text)>=0){
-            var a = $(this.parentNode);
-            a.addClass('azul')
-        }
-    })
-};
 
 // Comparador del programa + impresion de la fecha
 function calendar(){
