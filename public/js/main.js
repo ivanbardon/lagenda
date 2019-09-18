@@ -62,7 +62,7 @@ $(document).ready(function(){
     // Creo una instacia de instafeed para traer fotos de instagram
     var feed = new Instafeed({
         get : 'tagged',
-        tagName : 'ulldecona',
+        tagName : 'vinaros',
         clientId : '8a96efaaef1b4e1796d0a2bc1a37f0c6',
         sortBy : 'most-liked',
         resolution : 'low_resolution',
@@ -80,28 +80,28 @@ $(document).ready(function(){
     
     // feed.run();
 
-    $.getJSON(urlWeather, function(data) {
-        var weather = data.query.results.channel;
-        var item = data.query.results.channel.item;
-        var condition = data.query.results.channel.item.condition;
-        var forecast = data.query.results.channel.item.forecast;
+    // $.getJSON(urlWeather, function(data) {
+    //     var weather = data.query.results.channel;
+    //     var item = data.query.results.channel.item;
+    //     var condition = data.query.results.channel.item.condition;
+    //     var forecast = data.query.results.channel.item.forecast;
 
-        temp_actual.append('<p>'+ condition.temp +'°</p>');
+    //     temp_actual.append('<p>'+ condition.temp +'°</p>');
 
-        // Coleccion y vista para la prevision meteo
-        var previsioCollection = Backbone.Collection.extend({
-            model: Previsio
-        });
-        previsio = new previsioCollection(forecast);
-        var previsioView = new PrevisioView({el:$('#div_forecast'), collection:previsio});
+    //     // Coleccion y vista para la prevision meteo
+    //     var previsioCollection = Backbone.Collection.extend({
+    //         model: Previsio
+    //     });
+    //     previsio = new previsioCollection(forecast);
+    //     var previsioView = new PrevisioView({el:$('#div_forecast'), collection:previsio});
 
-        // Coleccion y vista para la condicion meteo
-        var condicioCollection = Backbone.Collection.extend({
-            model: Condicio
-        });
-        condicio = new condicioCollection(condition);
-        var condicioView = new CondicioView({el:$('#meteo_actual'), collection:condicio});
-    });
+    //     // Coleccion y vista para la condicion meteo
+    //     var condicioCollection = Backbone.Collection.extend({
+    //         model: Condicio
+    //     });
+    //     condicio = new condicioCollection(condition);
+    //     var condicioView = new CondicioView({el:$('#meteo_actual'), collection:condicio});
+    // });
 
 });
 
