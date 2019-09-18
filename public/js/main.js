@@ -134,11 +134,7 @@ $(document).ready(function(){
 
     });
 
-    //Peticion ajax para mostrar la noticias del blog ulldecona.cat
-    $.ajax({
-
-        url:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22www.ulldecona.cat%2Ffeed%2F%22&format=json&diagnostics=true&callback=getRSSUllde"
-    });
+    
     
     // Peticion ajax a yahoo para mostrar el tiempo
     $.ajax({
@@ -240,28 +236,11 @@ var getWeather = function(data) {
     condicio = new condicioCollection(condition);
     var condicioView = new CondicioView({el:$('#meteo_actual'), collection:condicio});
 };
-// Funcion para manejar los datos que obtengo del ayuntamiento
-var getRSSUllde = function(data){
-    var items = data.query.results.body.rss.channel.item;
-
-    var noticiesCollection = Backbone.Collection.extend({
-        model: Noticia
-    });
-    noticies = new noticiesCollection(items);
-    
-};
 
 
 
 
-// Pedir a la base de datos los actos 
-function actualizaActes(){
-    actes.fetch({
-        success: function(){
-            console.log('Base de dades per a els actes actualitzada');
-        }
-    });
-};
+
 // Pedir a la base de datos los servicios y mostrar la farmacia de guardia en la pantalla principal
 function actualizaServeis(){
     serveis.fetch({
@@ -343,4 +322,3 @@ function calendar(){
     }
 
 };
-out
