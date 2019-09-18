@@ -78,7 +78,7 @@ $(document).ready(function(){
         }
     });
     
-    // feed.run();
+    feed.run();
 
     // $.getJSON(urlWeather, function(data) {
     //     var weather = data.query.results.channel;
@@ -108,35 +108,35 @@ $(document).ready(function(){
 // Funcion para manejar los datos en JSON que llegan desde yahoo weather
 
 // Funcion para manejar los datos que obtengo del ayuntamiento
-$.getJSON(urlRSS, function(data){
+// $.getJSON(urlRSS, function(data){
 
-    var a = data.query.results.div.div.a;
-    var b = data.query.results.div.div.p;
+//     var a = data.query.results.div.div.a;
+//     var b = data.query.results.div.div.p;
 
-    var items = [];
-    var totalAes = a.length;
+//     var items = [];
+//     var totalAes = a.length;
 
-    for(var i = 0;i<totalAes;i++){
-        var aux = {"titul":a[i].content,"text":b[i]};
-        items.push(aux);
+//     for(var i = 0;i<totalAes;i++){
+//         var aux = {"titul":a[i].content,"text":b[i]};
+//         items.push(aux);
 
-    }
+//     }
     
-    var noticiesCollection = Backbone.Collection.extend({
-        model: Noticia,
-        findByTitul: function(datos){
-            filteredTitul = this.filter(function(item){
-                return item.get('titul').indexOf(datos) != -1;
-            });
-        return new noticiesCollection(filteredTitul);
-        }
-    });
+//     var noticiesCollection = Backbone.Collection.extend({
+//         model: Noticia,
+//         findByTitul: function(datos){
+//             filteredTitul = this.filter(function(item){
+//                 return item.get('titul').indexOf(datos) != -1;
+//             });
+//         return new noticiesCollection(filteredTitul);
+//         }
+//     });
 
-    noticies = new noticiesCollection(items);
+//     noticies = new noticiesCollection(items);
 
-    var noticiaView = new NoticiaView({el:$('#contenedor'), collection:noticies});
+//     var noticiaView = new NoticiaView({el:$('#contenedor'), collection:noticies});
     
-});
+// });
 
 
 
@@ -165,20 +165,20 @@ function calendar(){
     // Puig = 1
     // Soler = 2
 
-    if (numero==1||numero==2||numero==3||numero==4||numero==5||numero==6||numero==7||numero==22||numero==23||numero==24||numero==25||numero==26||numero==27||numero==28){
+    // if (numero==1||numero==2||numero==3||numero==4||numero==5||numero==6||numero==7||numero==22||numero==23||numero==24||numero==25||numero==26||numero==27||numero==28){
 
-        guard = 2
+    //     guard = 2
 
-    }else if (numero==8||numero==9||numero==10||numero==11||numero==12||numero==13||numero==14||numero==24||numero==29||numero==30) {
-
-        
-        guard = 0
-
-    }else{
+    // }else if (numero==8||numero==9||numero==10||numero==11||numero==12||numero==13||numero==14||numero==24||numero==29||numero==30) {
 
         
-        guard = 1
-    }
+    //     guard = 0
+
+    // }else{
+
+        
+    //     guard = 1
+    // }
 
 };
 
